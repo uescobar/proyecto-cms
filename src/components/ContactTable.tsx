@@ -16,6 +16,7 @@ function ContactTable({ contacts, onClick }: Props) {
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Correo</th>
+          <th>Tipo</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +29,7 @@ function ContactTable({ contacts, onClick }: Props) {
             <td>{contact.name}</td>
             <td>{contact.lastname}</td>
             <td>{contact.email}</td>
+            <td>{contact.type}</td>
           </tr>
         ))}
       </tbody>

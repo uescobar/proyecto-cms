@@ -25,6 +25,7 @@ function ContactForm({ onSubmit }: Props) {
         <Input name="lastname">Apellido</Input>
         <Input name="email">Correo</Input>
         <Select
+          name="type"
           label="Tipo"
           defaultMessage="-- Selecciona tipo --"
           options={contactTypeOptions}
