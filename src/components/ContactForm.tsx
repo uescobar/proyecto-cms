@@ -1,18 +1,25 @@
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Input from "./Input";
+import Button from "./Button";
+import { contactSchema, type Contact } from "../schemas/Contact";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type Props = {};
+type Props = {
+  onSubmit: (contact: Contact) => void;
+};
 
-function ContactForm({}: Props) {
-  const methods = useForm();
+function ContactForm({ onSubmit }: Props) {
+  const methods = useForm<Contact>({
+    resolver: zodResolver(contactSchema),
+  });
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit((data) => console.log(data))}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Input name="name">Nombre</Input>
         <Input name="lastname">Apellido</Input>
         <Input name="email">Correo</Input>
-        <button> Enviar</button>
+        <Button>Enviar</Button>
       </form>
     </FormProvider>
   );

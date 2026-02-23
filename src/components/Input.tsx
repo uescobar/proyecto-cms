@@ -4,7 +4,8 @@ import { useFormContext } from "react-hook-form";
 type Props = { name: string; children: ReactNode };
 
 function Input({ name, children }: Props) {
-  const { register } = useFormContext();
+  const { register, formState, getFieldState } = useFormContext();
+  const { error } = getFieldState(name, formState);
 
   return (
     <div className="mb-3">
@@ -17,6 +18,7 @@ function Input({ name, children }: Props) {
         className="form-control"
         id={name}
       />
+      {error?.message && <div className="text-danger">{error.message}</div>}
     </div>
   );
 }
