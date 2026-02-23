@@ -20,7 +20,9 @@ export const contactSchema = z.object({
     .string()
     .min(1, { message: "El correo es requerido" })
     .email({ message: "El correo no es válido" }),
-  type: z.enum(contactTypeOptions),
+  type: z.enum(contactTypeOptions, {
+    errorMap: () => ({ message: "Seleccione tipo" }),
+  }),
 });
 
 export type Contact = z.infer<typeof contactSchema> & { id: string };
